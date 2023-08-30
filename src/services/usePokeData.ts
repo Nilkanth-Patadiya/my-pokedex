@@ -6,6 +6,9 @@ export const usePokeData = () => {
   return useQuery(
     'pokemons',
     async () =>
-      await axios.get<PokeList>('https://pokeapi.co/api/v2/pokemon?limit=60')
+      await axios.get<PokeList>('https://pokeapi.co/api/v2/pokemon?limit=640'),
+    {
+      staleTime: Infinity,
+    }
   )
 }

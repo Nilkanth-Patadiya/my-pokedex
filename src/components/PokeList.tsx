@@ -1,17 +1,37 @@
-import { Grid } from '@mui/material'
+import { Grid, Pagination } from '@mui/material'
 import Pokecard from './PokeCard'
-import { usePokeData } from '../services/usePokeData'
+import React from 'react'
+import { PokeListProps } from '../App.props'
 
-const PokeList = () => {
-  const { data } = usePokeData()
-  console.log(data)
+const PokeList = ({ items, itemsPerPage, totalPages }: PokeListProps) => {
+  const [page, setPage] = React.useState(1)
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+  }
+  // Calculate the range of items for the current page
+  const startIndex = (page - 1) * itemsPerPage
+  const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
   return (
-    <Grid container columns={10} flexWrap={'wrap'} spacing={2}>
-      {data?.data?.results?.map(({ name }, index) => (
-        <Grid item xs={12} md={2} key={name}>
-          <Pokecard name={name} id={index + 1} />
+    <Grid container flexWrap={'wrap'} spacing={5}>
+      {currentPageItems?.map(({ name }, index) => (
+        <Grid item xs={12} md={3} key={name}>
+          <Pokecard name={name} id={index + 1} page={page - 1} />
         </Grid>
       ))}
+      <Grid
+        item
+        sm={12}
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
+        <Pagination
+          showFirstButton
+          showLastButton
+          variant="outlined"
+          count={totalPages}
+          page={page}
+          onChange={handleChange}
+        ></Pagination>
+      </Grid>
     </Grid>
   )
 }

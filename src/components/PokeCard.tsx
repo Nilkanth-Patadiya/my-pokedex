@@ -1,7 +1,7 @@
-import { Card, CardMedia, CardContent, Typography } from '@mui/material'
+import { Card, CardContent, Typography, Box } from '@mui/material'
 import { PokeCardProps } from '../App.props'
 
-const Pokecard = ({ name, id }: PokeCardProps) => {
+const Pokecard = ({ name, id, page }: PokeCardProps) => {
   return (
     <Card
       sx={{
@@ -9,22 +9,34 @@ const Pokecard = ({ name, id }: PokeCardProps) => {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
       }}
     >
-      <CardMedia
-        component={'img'}
+      <Box
         sx={{
-          width: 'auto',
-          height: 'auto',
-          maxWidth: '100%',
-          maxHeight: 200,
-          objectFit: 'contain',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexGrow: 1,
+          width: 1,
         }}
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
-        alt={name}
-      />
+      >
+        <Box
+          component={'img'}
+          sx={{
+            width: 'auto',
+            height: 'auto',
+            maxWidth: '100%',
+            maxHeight: 200,
+            objectFit: 'contain',
+          }}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+            page * 20 + id
+          }.svg`}
+          alt={name}
+        />
+      </Box>
+
       <CardContent
         sx={{
           ':last-child': {
