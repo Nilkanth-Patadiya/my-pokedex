@@ -24,6 +24,7 @@ const PokeList = ({ items, itemsPerPage, totalPages }: PokeListProps) => {
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
         <Pagination
+          color="primary"
           showFirstButton
           showLastButton
           variant="outlined"

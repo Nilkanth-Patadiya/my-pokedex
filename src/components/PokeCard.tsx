@@ -1,7 +1,15 @@
 import { Card, CardContent, Typography, Box } from '@mui/material'
 import { PokeCardProps } from '../App.props'
 
+import { useColor } from 'color-thief-react'
 const Pokecard = ({ name, id, page }: PokeCardProps) => {
+  const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+    page * 20 + id
+  }.svg`
+  const { data } = useColor(imgURL, 'hex', {
+    crossOrigin: 'anonymous',
+    quality: 20,
+  })
   return (
     <Card
       sx={{
@@ -10,6 +18,13 @@ const Pokecard = ({ name, id, page }: PokeCardProps) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        '&:hover': {
+          cursor: 'pointer',
+          border: 2,
+          borderColor: data,
+          transform: 'rotate(2deg)',
+          '& .MuiTypography-root': { color: data },
+        },
       }}
     >
       <Box
@@ -30,9 +45,7 @@ const Pokecard = ({ name, id, page }: PokeCardProps) => {
             maxHeight: 200,
             objectFit: 'contain',
           }}
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-            page * 20 + id
-          }.svg`}
+          src={imgURL}
           alt={name}
         />
       </Box>
@@ -44,7 +57,7 @@ const Pokecard = ({ name, id, page }: PokeCardProps) => {
           },
         }}
       >
-        <Typography gutterBottom variant="h5" textTransform={'capitalize'}>
+        <Typography gutterBottom variant="h5" textTransform={'uppercase'}>
           {name}
         </Typography>
       </CardContent>
