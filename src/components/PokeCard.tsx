@@ -15,7 +15,6 @@ const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
   }.svg`
   const { data } = useColor(imgURL, 'hex', {
     crossOrigin: 'anonymous',
-    quality: 1,
   })
   const navigate = useNavigate()
   return (
@@ -37,7 +36,7 @@ const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
           '&:hover': {
             border: 2,
             borderColor: data,
-            '& .MuiTypography-root': { color: data },
+            '& .MuiTypography-root': { color: data, fontWeight: 600 },
           },
         }}
       >
@@ -71,7 +70,7 @@ const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
             },
           }}
         >
-          <Typography gutterBottom variant="h5" textTransform={'uppercase'}>
+          <Typography variant="h5" textTransform={'uppercase'}>
             {name}
           </Typography>
         </CardContent>

@@ -6,11 +6,13 @@ export type PokeCardProps = {
   page: number
 }
 export type PokeListProps = {
-  page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
   items: Pokemon[] | undefined
   itemsPerPage: number
   totalPages: number
+}
+export type StateProviderProps = {
+  page: number
+  setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 // Type declarations for API data

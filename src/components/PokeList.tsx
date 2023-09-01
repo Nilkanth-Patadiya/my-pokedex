@@ -2,14 +2,13 @@ import { Grid, Pagination } from '@mui/material'
 import Pokecard from './PokeCard'
 import React from 'react'
 import { PokeListProps } from '../App.props'
+import { useStateContext } from '../hooks/useStateContext'
 
-const PokeList = ({
-  page,
-  setPage,
-  items,
-  itemsPerPage,
-  totalPages,
-}: PokeListProps) => {
+const PokeList = ({ items, itemsPerPage, totalPages }: PokeListProps) => {
+  const state = useStateContext()
+  const page = state!.page
+  const setPage = state!.setPage
+
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }

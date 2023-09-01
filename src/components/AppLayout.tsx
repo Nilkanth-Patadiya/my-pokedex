@@ -8,7 +8,7 @@ const AppLayout = () => {
       direction={'column'}
       sx={{ height: '100vh', flexWrap: 'nowrap' }}
     >
-      <Grid item p={2}>
+      <Grid item p={2} bgcolor={'primary.main'}>
         <Typography
           variant="h3"
           color={'gold'}
@@ -19,7 +19,7 @@ const AppLayout = () => {
         </Typography>
       </Grid>
       <Outlet />
-      <Grid item p={2}>
+      <Grid item p={2} bgcolor={'primary.main'}>
         <Typography
           variant="h6"
           textAlign={'center'}
