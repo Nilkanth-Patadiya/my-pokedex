@@ -3,8 +3,13 @@ import Pokecard from './PokeCard'
 import React from 'react'
 import { PokeListProps } from '../App.props'
 
-const PokeList = ({ items, itemsPerPage, totalPages }: PokeListProps) => {
-  const [page, setPage] = React.useState(1)
+const PokeList = ({
+  page,
+  setPage,
+  items,
+  itemsPerPage,
+  totalPages,
+}: PokeListProps) => {
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
@@ -13,9 +18,9 @@ const PokeList = ({ items, itemsPerPage, totalPages }: PokeListProps) => {
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
   return (
     <Grid container flexWrap={'wrap'} spacing={5}>
-      {currentPageItems?.map(({ name }, index) => (
+      {currentPageItems?.map(({ name, url }, index) => (
         <Grid item xs={12} md={3} key={name}>
-          <Pokecard name={name} id={index + 1} page={page - 1} />
+          <Pokecard name={name} id={index + 1} page={page - 1} url={url} />
         </Grid>
       ))}
       <Grid

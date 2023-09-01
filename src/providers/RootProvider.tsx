@@ -1,13 +1,14 @@
 import { CssBaseline } from '@mui/material'
-import { PropsWithChildren } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-const RootProvider = ({ children }: PropsWithChildren<unknown>) => {
+import { RouterProvider } from 'react-router-dom'
+import { router } from '../App.routes'
+const RootProvider = () => {
   const queryClient = new QueryClient()
 
   return (
     <QueryClientProvider client={queryClient}>
       <CssBaseline enableColorScheme />
-      {children}
+      <RouterProvider router={router} />
     </QueryClientProvider>
   )
 }
