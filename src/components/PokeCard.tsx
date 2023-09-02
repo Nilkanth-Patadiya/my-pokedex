@@ -7,15 +7,11 @@ import {
 } from '@mui/material'
 import { PokeCardProps } from '../App.props'
 
-import { useColor } from 'color-thief-react'
 import { useNavigate } from 'react-router-dom'
-const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
-  const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-    page * 20 + id
-  }.svg`
-  const { data } = useColor(imgURL, 'hex', {
-    crossOrigin: 'anonymous',
-  })
+import { pokeTypeColors } from '../constants'
+const Pokecard = ({ name, type, id }: PokeCardProps) => {
+  const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
+  const hoverColor = pokeTypeColors?.[type]
   const navigate = useNavigate()
   return (
     <Card
@@ -25,7 +21,7 @@ const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
     >
       <CardActionArea
         onClick={() => {
-          navigate(`details?name=${name}`, { state: { url } })
+          navigate(`details?name=${name}`, { state: { id } })
         }}
         sx={{
           p: 2,
@@ -35,8 +31,8 @@ const Pokecard = ({ name, url, id, page }: PokeCardProps) => {
           alignItems: 'center',
           '&:hover': {
             border: 2,
-            borderColor: data,
-            '& .MuiTypography-root': { color: data, fontWeight: 600 },
+            borderColor: hoverColor,
+            '& .MuiTypography-root': { color: hoverColor, fontWeight: 600 },
           },
         }}
       >

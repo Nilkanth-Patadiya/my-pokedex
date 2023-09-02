@@ -5,7 +5,17 @@ import { router } from '../App.routes'
 import StateProvider from './StateProvider'
 import { theme } from '../theme'
 const RootProvider = () => {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        retry: false,
+        staleTime: 60 * 60 * 1000,
+      },
+    },
+  })
 
   return (
     <QueryClientProvider client={queryClient}>

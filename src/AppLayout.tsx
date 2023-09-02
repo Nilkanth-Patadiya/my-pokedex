@@ -1,7 +1,10 @@
 import { Grid, Typography } from '@mui/material'
 import { Outlet } from 'react-router-dom'
+import { usePokeData } from './services/queries'
 
 const AppLayout = () => {
+  const { data } = usePokeData()
+
   return (
     <Grid
       container
@@ -18,7 +21,7 @@ const AppLayout = () => {
           Pokédex
         </Typography>
       </Grid>
-      <Outlet />
+      <Outlet context={data} />
       <Grid item p={2} bgcolor={'primary.main'}>
         <Typography
           variant="h6"
