@@ -66,7 +66,11 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             },
           }}
         >
-          <Typography variant="h5" textTransform={'uppercase'}>
+          <Typography
+            variant="h5"
+            textTransform={'uppercase'}
+            fontFamily={'cursive'}
+          >
             {name}
           </Typography>
         </CardContent>

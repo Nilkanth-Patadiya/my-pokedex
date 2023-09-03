@@ -6,7 +6,4 @@ export const theme = createTheme({
       main: '#622569',
     },
   },
-  typography: {
-    fontFamily: 'Poppins',
-  },
 })
