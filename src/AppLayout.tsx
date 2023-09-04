@@ -3,8 +3,9 @@ import { Outlet } from 'react-router-dom'
 import { usePokeData } from './services/queries'
 
 const AppLayout = () => {
-  const { data } = usePokeData()
+  const { data, isLoading } = usePokeData()
   const imgUrl = new URL('/pokeball.png', import.meta.url).href
+  console.log(isLoading)
   return (
     <Grid
       container
@@ -39,7 +40,7 @@ const AppLayout = () => {
           />
         </Stack>
       </Grid>
-      <Outlet context={data} />
+      <Outlet context={{ data, isLoading }} />
       <Grid item p={2} bgcolor={'primary.main'}>
         <Typography
           variant="h6"

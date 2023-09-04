@@ -4,15 +4,18 @@ import {
   Typography,
   Box,
   CardActionArea,
+  Skeleton,
 } from '@mui/material'
 import { PokeCardProps } from '../App.props'
 
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { pokeTypeColors } from '../constants'
 const Pokecard = ({ name, type, id }: PokeCardProps) => {
   const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
   const hoverColor = pokeTypeColors?.[type]
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
   return (
     <Card
       sx={{
@@ -45,6 +48,11 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             width: 1,
           }}
         >
+          <Skeleton
+            variant="rounded"
+            width={'100%'}
+            sx={{ height: { md: 200 }, display: loading ? 'initial' : 'none' }}
+          />
           <Box
             component={'img'}
             sx={{
@@ -53,26 +61,34 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
               maxWidth: '100%',
               maxHeight: 200,
               objectFit: 'contain',
+              display: loading ? 'none' : 'initial',
             }}
             src={imgURL}
             alt={name}
+            onLoad={() => setLoading(false)}
           />
         </Box>
 
         <CardContent
           sx={{
+            width: 1,
             ':last-child': {
               pb: 0,
             },
           }}
         >
-          <Typography
-            variant="h5"
-            textTransform={'uppercase'}
-            fontFamily={'cursive'}
-          >
-            {name}
-          </Typography>
+          {loading ? (
+            <Skeleton variant="text" sx={{ fontSize: '1.25rem' }} />
+          ) : (
+            <Typography
+              variant="h5"
+              textTransform={'uppercase'}
+              fontFamily={'cursive'}
+              textAlign={'center'}
+            >
+              {name}
+            </Typography>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>

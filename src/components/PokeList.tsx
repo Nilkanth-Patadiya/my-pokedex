@@ -1,12 +1,17 @@
 import { Grid, Pagination } from '@mui/material'
 import Pokecard from './PokeCard'
 import React from 'react'
-import { PokeListProps, Pokemon } from '../App.props'
+import { Pokemon } from '../App.props'
 import { useStateContext } from '../hooks/useStateContext'
 import { useOutletContext } from 'react-router-dom'
+import PokeCardLoader from './PokeCardLoader'
+import { itemsPerPage, totalPages } from '../constants'
 
-const PokeList = ({ itemsPerPage, totalPages }: PokeListProps) => {
-  const items = useOutletContext<Pokemon[]>()
+const PokeList = () => {
+  const { data: items, isLoading } = useOutletContext<{
+    data: Pokemon[]
+    isLoading: boolean
+  }>()
   const state = useStateContext()
   const page = state!.page
   const setPage = state!.setPage
@@ -19,16 +24,15 @@ const PokeList = ({ itemsPerPage, totalPages }: PokeListProps) => {
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
   return (
     <Grid container flexWrap={'wrap'} spacing={5}>
-      {currentPageItems?.map(({ name, types, id }) => (
-        <Grid item xs={12} md={3} key={name}>
-          <Pokecard
-            name={name}
-            id={id}
-            page={page - 1}
-            type={types?.[0]?.type?.name}
-          />
-        </Grid>
-      ))}
+      {!items?.length ? (
+        <PokeCardLoader />
+      ) : (
+        currentPageItems?.map(({ name, types, id }) => (
+          <Grid item xs={12} md={3} key={name}>
+            <Pokecard name={name} id={id} type={types?.[0]?.type?.name} />
+          </Grid>
+        ))
+      )}
       <Grid
         item
         sm={12}

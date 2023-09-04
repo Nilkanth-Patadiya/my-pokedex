@@ -5,10 +5,7 @@ export type PokeCardProps = {
   id: number
   // page: number
 }
-export type PokeListProps = {
-  itemsPerPage: number
-  totalPages: number
-}
+
 export type StateProviderProps = {
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
