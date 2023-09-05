@@ -23,6 +23,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
       }}
     >
       <CardActionArea
+        disabled={loading}
         onClick={() => {
           navigate(`details?name=${name}`, { state: { id } })
         }}

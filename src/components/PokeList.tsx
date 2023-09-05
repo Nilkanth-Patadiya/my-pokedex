@@ -24,7 +24,7 @@ const PokeList = () => {
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
   return (
     <Grid container flexWrap={'wrap'} spacing={5}>
-      {!items?.length ? (
+      {isLoading ? (
         <PokeCardLoader />
       ) : (
         currentPageItems?.map(({ name, types, id }) => (

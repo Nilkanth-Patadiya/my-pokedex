@@ -4,9 +4,9 @@ import {
   Navigate,
   Route,
 } from 'react-router-dom'
-import Home from './components/Home'
-import PokemonDetails from './components/PokemonDetails'
 import AppLayout from './AppLayout'
+import Home from './pages/Home'
+import PokemonDetails from './pages/PokemonDetails'
 
 // Configure nested routes with JSX
 export const router = createBrowserRouter(

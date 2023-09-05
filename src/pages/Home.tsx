@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import PokeList from './PokeList'
+import PokeList from '../components/PokeList'
 
 const Home = () => {
   return (
