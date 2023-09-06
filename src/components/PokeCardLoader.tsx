@@ -12,7 +12,7 @@ const PokeCardLoader = () => {
   return Array(itemsPerPage)
     .fill('')
     .map((_, index) => (
-      <Grid item xs={12} md={3} key={index}>
+      <Grid item xs={12} md={3} key={index + 'loader'}>
         <Card
           sx={{
             height: '100%',
