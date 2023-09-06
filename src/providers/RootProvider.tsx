@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider } from 'react-router-dom'
 import { router } from '../App.routes'
 import StateProvider from './StateProvider'
-import { theme } from '../theme'
+import { responsiveTheme } from '../theme'
 const RootProvider = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,7 +19,7 @@ const RootProvider = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={responsiveTheme}>
         <StateProvider>
           <CssBaseline enableColorScheme />
           <RouterProvider router={router} />
