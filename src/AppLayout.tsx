@@ -1,11 +1,11 @@
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import { usePokeData } from './services/queries'
+import { useImgURL } from './hooks/useImgURL'
 
 const AppLayout = () => {
   const { data, isLoading } = usePokeData()
-  const imgUrl = new URL('/pokeball.png', import.meta.url).href
-  console.log(isLoading)
+  const imgUrl = useImgURL('/pokeball.png')
   return (
     <Grid
       container
