@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
 import Pokecard from './PokeCard'
 import React from 'react'
-import { Pokemon } from '../App.props'
+import { OutletContextProps } from '../App.props'
 import { useStateContext } from '../hooks/useStateContext'
 import { useOutletContext } from 'react-router-dom'
 import PokeCardLoader from './PokeCardLoader'
@@ -19,10 +19,7 @@ import Fuse from 'fuse.js'
 
 const PokeList = () => {
   const [query, setQuery] = React.useState('')
-  const { data, isLoading } = useOutletContext<{
-    data: Pokemon[]
-    isLoading: boolean
-  }>()
+  const { data, isLoading } = useOutletContext<OutletContextProps>()
   const fuse = new Fuse(data, {
     keys: ['name'],
   })

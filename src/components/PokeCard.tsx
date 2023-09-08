@@ -18,6 +18,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
   const [loading, setLoading] = useState(true)
   return (
     <Card
+      elevation={8}
       sx={{
         height: '100%',
       }}
@@ -33,8 +34,9 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          border: 2,
+          borderColor: 'transparent',
           '&:hover': {
-            border: 2,
             borderColor: hoverColor,
             '& .MuiTypography-root': { color: hoverColor, fontWeight: 600 },
           },

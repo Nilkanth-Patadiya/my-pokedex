@@ -5,10 +5,13 @@ export type PokeCardProps = {
   id: number
   // page: number
 }
-
 export type StateProviderProps = {
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
+}
+export type OutletContextProps = {
+  data: Pokemon[]
+  isLoading: boolean
 }
 
 // Type declarations for API data

@@ -14,6 +14,7 @@ const PokeCardLoader = () => {
     .map((_, index) => (
       <Grid item xs={12} md={3} key={index + 'loader'}>
         <Card
+          elevation={8}
           sx={{
             height: '100%',
           }}
