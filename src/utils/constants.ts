@@ -1,5 +1,5 @@
 export const itemsPerPage: number = 20
-export const totalPages: number = 32
+export const totalItems: number = 640
 export const pokeTypeColors: Record<string, string> = {
   normal: '#AAA67F',
   fighting: '#C12239',

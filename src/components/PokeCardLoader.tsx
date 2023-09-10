@@ -6,7 +6,7 @@ import {
   CardContent,
   Grid,
 } from '@mui/material'
-import { itemsPerPage } from '../constants'
+import { itemsPerPage } from '../utils/constants'
 
 const PokeCardLoader = () => {
   return Array(itemsPerPage)

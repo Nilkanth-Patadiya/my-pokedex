@@ -14,7 +14,7 @@ import { OutletContextProps } from '../App.props'
 import { useStateContext } from '../hooks/useStateContext'
 import { useOutletContext } from 'react-router-dom'
 import PokeCardLoader from './PokeCardLoader'
-import { itemsPerPage, totalPages } from '../constants'
+import { itemsPerPage } from '../utils/constants'
 import Fuse from 'fuse.js'
 
 const PokeList = () => {
@@ -98,7 +98,7 @@ const PokeList = () => {
           showFirstButton
           showLastButton
           variant="outlined"
-          count={totalPages}
+          count={Math.round(items?.length / itemsPerPage)}
           page={page}
           onChange={handleChange}
         ></Pagination>

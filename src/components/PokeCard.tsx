@@ -10,7 +10,8 @@ import { PokeCardProps } from '../App.props'
 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { pokeTypeColors } from '../constants'
+import { pokeTypeColors } from '../utils/constants'
+import { formatText } from '../utils/helper'
 const Pokecard = ({ name, type, id }: PokeCardProps) => {
   const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
   const hoverColor = pokeTypeColors?.[type]
@@ -89,7 +90,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
               fontFamily={'cursive'}
               textAlign={'center'}
             >
-              {name}
+              {formatText(name)}
             </Typography>
           )}
         </CardContent>

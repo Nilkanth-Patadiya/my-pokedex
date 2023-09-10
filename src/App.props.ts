@@ -3,7 +3,11 @@ export type PokeCardProps = {
   name: string
   type: string
   id: number
-  // page: number
+}
+export type StatItemProps = {
+  name: string
+  value: number
+  color: string
 }
 export type StateProviderProps = {
   page: number

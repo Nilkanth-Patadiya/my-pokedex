@@ -1,19 +1,11 @@
-import {
-  Box,
-  Button,
-  Chip,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box, Button, Chip, Grid, Stack, Typography } from '@mui/material'
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { OutletContextProps } from '../App.props'
 import { useImgURL } from '../hooks/useImgURL'
-import { pokeTypeColors } from '../constants'
+import { pokeTypeColors } from '../utils/constants'
+import StatItem from '../components/StatItem'
+import { formatText, normalise } from '../utils/helper'
 
 const PokemonDetails = () => {
   const { data } = useOutletContext<OutletContextProps>()
@@ -24,23 +16,17 @@ const PokemonDetails = () => {
   const activeColor = pokeTypeColors?.[activeData?.types?.[0]?.type?.name]
   const imgUrl = useImgURL('/pokeball_bg.svg')
   return (
-    <Grid item flexGrow={1} py={3}>
-      <Grid container height={1}>
-        <Grid
-          item
-          xs={2}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 1,
-          }}
-        >
-          <IconButton color="primary">
-            <ArrowBackIcon />
-          </IconButton>
-        </Grid>
-        <Grid item xs={8}>
+    <Grid item flexGrow={1}>
+      <Grid
+        container
+        justifyContent={'center'}
+        height={1}
+        sx={{
+          background: `repeating-linear-gradient(45deg,${activeColor},${activeColor} 10px,#fff 10px,#fff 20px)`,
+        }}
+        py={2}
+      >
+        <Grid item xs={12} md={8}>
           <Box
             sx={{
               display: 'flex',
@@ -53,6 +39,7 @@ const PokemonDetails = () => {
             <Box sx={{ flex: '0 0 25%' }}>
               <Button
                 color="inherit"
+                size="large"
                 startIcon={<KeyboardBackspaceIcon />}
                 onClick={() => navigate('/pokemons')}
               >
@@ -67,7 +54,7 @@ const PokemonDetails = () => {
                 textAlign={'center'}
                 sx={{ textShadow: `2px 2px #000` }}
               >
-                {activeData?.name}
+                {formatText(activeData?.name)}
               </Typography>
               <Box
                 sx={{
@@ -85,7 +72,7 @@ const PokemonDetails = () => {
                         transform: 'rotate(360deg)',
                       },
                       '100%': {
-                        transform: 'rotate(0deg)',
+                        transform: 'rotate(00deg)',
                       },
                     },
                   }}
@@ -96,7 +83,7 @@ const PokemonDetails = () => {
                   component={'img'}
                   sx={{
                     width: 'auto',
-                    height: { md: 250 },
+                    height: { md: 200 },
                     position: 'absolute',
                     left: 0,
                     right: 0,
@@ -113,7 +100,7 @@ const PokemonDetails = () => {
             <Box sx={{ flex: '0 0 25%' }}>
               <Typography
                 color="inherit"
-                variant="subtitle1"
+                variant="h6"
                 textAlign={'end'}
                 fontWeight={'bold'}
               >
@@ -123,34 +110,53 @@ const PokemonDetails = () => {
               </Typography>
             </Box>
           </Box>
-          <Stack direction={'row'} justifyContent={'center'} spacing={1} mt={2}>
-            {activeData?.types?.map(({ type: { name } }) => (
-              <Chip
-                key={name}
-                label={name}
-                sx={{
-                  bgcolor: pokeTypeColors?.[name],
-                  color: 'white',
-                  fontSize: '1rem',
-                  textTransform: 'capitalize',
-                }}
-              />
-            ))}
+          <Stack gap={2} bgcolor={'white'} p={2}>
+            <Stack
+              direction={'row'}
+              justifyContent={'center'}
+              alignItems={'center'}
+              spacing={2}
+            >
+              {activeData?.types?.map(({ type: { name } }) => (
+                <Chip
+                  key={name}
+                  label={name}
+                  sx={{
+                    bgcolor: pokeTypeColors?.[name],
+                    color: 'white',
+                    fontSize: '1rem',
+                    textTransform: 'capitalize',
+                  }}
+                />
+              ))}
+            </Stack>
+            <Typography
+              variant="h5"
+              fontWeight={'medium'}
+              color={activeColor}
+              textAlign={'center'}
+            >
+              About
+            </Typography>
+            <Stack>
+              <Typography
+                variant="h5"
+                fontWeight={'medium'}
+                color={activeColor}
+                textAlign={'center'}
+              >
+                Base Stats
+              </Typography>
+              {activeData?.stats?.map(({ base_stat, stat }, index) => (
+                <StatItem
+                  key={index}
+                  name={formatText(stat?.name)}
+                  value={normalise(base_stat, 0, 252)}
+                  color={activeColor}
+                />
+              ))}
+            </Stack>
           </Stack>
-        </Grid>
-        <Grid
-          item
-          xs={2}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 1,
-          }}
-        >
-          <IconButton color="primary">
-            <ArrowForwardIcon />
-          </IconButton>
         </Grid>
       </Grid>
     </Grid>
