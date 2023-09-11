@@ -85,10 +85,11 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             <Skeleton variant="text" sx={{ fontSize: '1.25rem' }} />
           ) : (
             <Typography
-              variant="h5"
+              variant="h6"
               textTransform={'uppercase'}
               fontFamily={'cursive'}
               textAlign={'center'}
+              fontWeight={'bold'}
             >
               {formatText(name)}
             </Typography>

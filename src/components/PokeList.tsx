@@ -16,6 +16,7 @@ import { useOutletContext } from 'react-router-dom'
 import PokeCardLoader from './PokeCardLoader'
 import { itemsPerPage } from '../utils/constants'
 import Fuse from 'fuse.js'
+import NoResults from './NoResults'
 
 const PokeList = () => {
   const [query, setQuery] = React.useState('')
@@ -47,6 +48,7 @@ const PokeList = () => {
             id="basic-search"
             variant="outlined"
             disabled={isLoading}
+            autoFocus
             fullWidth
             placeholder="Search pokémon by name"
             value={query}
@@ -80,12 +82,16 @@ const PokeList = () => {
       </Grid>
       {isLoading ? (
         <PokeCardLoader />
-      ) : (
+      ) : items?.length > 0 ? (
         currentPageItems?.map(({ name, types, id }) => (
           <Grid item xs={12} md={3} key={name}>
             <Pokecard name={name} id={id} type={types?.[0]?.type?.name} />
           </Grid>
         ))
+      ) : (
+        <Grid item xs={12}>
+          <NoResults query={query} />
+        </Grid>
       )}
       <Grid
         item
@@ -98,7 +104,7 @@ const PokeList = () => {
           showFirstButton
           showLastButton
           variant="outlined"
-          count={Math.round(items?.length / itemsPerPage)}
+          count={Math.round((items?.length ?? 20) / itemsPerPage)}
           page={page}
           onChange={handleChange}
         ></Pagination>
