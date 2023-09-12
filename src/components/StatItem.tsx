@@ -1,5 +1,6 @@
 import { Box, Divider, LinearProgress, Stack, Typography } from '@mui/material'
 import { StatItemProps } from '../App.props'
+import { normalise } from '../utils/helper'
 
 const StatItem = ({ name, value, color }: StatItemProps) => {
   return (
@@ -20,14 +21,14 @@ const StatItem = ({ name, value, color }: StatItemProps) => {
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', flex: '1 1 80%' }}>
         <Box sx={{ flex: '1 1 5%' }}>
-          <Typography color="#666">{Math.round(value)}</Typography>
+          <Typography color="#666">{value}</Typography>
         </Box>
         <Box sx={{ flex: '1 1 95%' }}>
           <LinearProgress
             sx={{ borderRadius: 2, height: '6px' }}
             color={'inherit'}
             variant="determinate"
-            value={Math.round(value)}
+            value={normalise(value, 0, 252)}
           />
         </Box>
       </Box>

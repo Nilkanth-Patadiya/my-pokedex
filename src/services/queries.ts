@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
-import { PokeList, Pokemon } from '../App.props'
+import { NamedAPIResource, PokeList, Pokemon } from '../App.props'
 import { totalItems } from '../utils/constants'
 
 export const usePokeData = () => {
@@ -17,8 +17,16 @@ export const usePokeData = () => {
   })
 }
 
-export const usePokeDescription = (url: string) => {
-  return useQuery([url], async () => {
-    return await axios.get(url)
-  })
+export const usePokeDescription = (arr: NamedAPIResource[]) => {
+  return useQuery(
+    'Description',
+    () => {
+      return Promise.all(
+        arr?.map(async (elm) => {
+          return (await axios.get(elm?.url))?.data
+        })
+      )
+    },
+    { enabled: !!arr?.length }
+  )
 }

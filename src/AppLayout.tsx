@@ -1,11 +1,20 @@
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import { Outlet, ScrollRestoration } from 'react-router-dom'
-import { usePokeData } from './services/queries'
+import { usePokeData, usePokeDescription } from './services/queries'
 import { useImgURL } from './hooks/useImgURL'
 
 const AppLayout = () => {
   const { data, isLoading } = usePokeData()
+  const { data: descriptionData, isLoading: isDescriptionLoading } =
+    usePokeDescription(data?.map((elm) => elm?.species) ?? [])
   const imgUrl = useImgURL('/pokeball.png')
+  const descriptions = descriptionData?.map(
+    (elm) =>
+      elm?.flavor_text_entries.filter?.(
+        (elm: { version: { name: string } }) => elm?.version?.name === 'emerald'
+      )?.[0]?.flavor_text
+  )
+
   return (
     <>
       <Grid
@@ -29,6 +38,8 @@ const AppLayout = () => {
             </Typography>
             <Box
               component={'img'}
+              width={40}
+              height={40}
               sx={{
                 width: 'auto',
                 height: 40,
@@ -38,7 +49,13 @@ const AppLayout = () => {
             />
           </Stack>
         </Grid>
-        <Outlet context={{ data, isLoading }} />
+        <Outlet
+          context={{
+            data,
+            descriptions,
+            isLoading: isLoading || isDescriptionLoading,
+          }}
+        />
         <Grid item py={1} bgcolor={'primary.main'}>
           <Typography
             variant="h6"

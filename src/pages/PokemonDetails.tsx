@@ -1,18 +1,27 @@
-import { Box, Button, Chip, Grid, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Chip,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { OutletContextProps } from '../App.props'
 import { useImgURL } from '../hooks/useImgURL'
 import { pokeTypeColors } from '../utils/constants'
 import StatItem from '../components/StatItem'
-import { formatText, normalise } from '../utils/helper'
+import { formatText } from '../utils/helper'
+import { BackArrowIcon, HeightIcon, WeightIcon } from '../assets/icons'
 
 const PokemonDetails = () => {
-  const { data } = useOutletContext<OutletContextProps>()
+  const { data, descriptions } = useOutletContext<OutletContextProps>()
   const location = useLocation()
   const navigate = useNavigate()
   const dataID = location?.state?.id
   const activeData = data?.filter((elm) => elm?.id === dataID)?.[0]
+  const activeDescription = descriptions?.[dataID - 1]
   const activeColor = pokeTypeColors?.[activeData?.types?.[0]?.type?.name]
   const imgUrl = useImgURL('/pokeball_bg.svg')
   return (
@@ -40,7 +49,7 @@ const PokemonDetails = () => {
               <Button
                 color="inherit"
                 size="large"
-                startIcon={<KeyboardBackspaceIcon />}
+                startIcon={<BackArrowIcon />}
                 onClick={() => navigate('/pokemons')}
               >
                 Go Back
@@ -110,7 +119,7 @@ const PokemonDetails = () => {
               </Typography>
             </Box>
           </Box>
-          <Stack gap={2} bgcolor={'white'} p={2}>
+          <Stack gap={2} bgcolor={'white'} p={{ xs: 2, md: 3 }}>
             <Stack
               direction={'row'}
               justifyContent={'center'}
@@ -138,6 +147,68 @@ const PokemonDetails = () => {
             >
               About
             </Typography>
+            <Stack
+              direction={'row'}
+              gap={3}
+              divider={<Divider orientation="vertical" flexItem />}
+            >
+              <Stack
+                gap={1}
+                sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Stack direction={'row'} gap={1} alignItems={'center'}>
+                  <WeightIcon fontSize="large" />
+                  <Typography>
+                    {(activeData?.weight / 10).toLocaleString('en', {
+                      style: 'unit',
+                      unit: 'kilogram',
+                    })}
+                  </Typography>
+                </Stack>
+                <Typography variant="body2" color={'#666'}>
+                  Weight
+                </Typography>
+              </Stack>
+              <Stack
+                gap={1}
+                sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Stack direction={'row'} gap={1} alignItems={'center'}>
+                  <HeightIcon fontSize="large" />
+                  <Typography>
+                    {(activeData?.height / 10).toLocaleString('en', {
+                      style: 'unit',
+                      unit: 'meter',
+                    })}
+                  </Typography>
+                </Stack>
+                <Typography variant="body2" color={'#666'}>
+                  Height
+                </Typography>
+              </Stack>
+              <Stack
+                gap={1}
+                sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Box>
+                  {activeData?.moves?.slice(0, 2)?.map((elm, i) => (
+                    <Typography
+                      textTransform={'capitalize'}
+                      textAlign={'center'}
+                      key={i}
+                    >
+                      {elm?.move?.name}
+                    </Typography>
+                  ))}
+                </Box>
+                <Typography variant="body2" color={'#666'}>
+                  Moves
+                </Typography>
+              </Stack>
+            </Stack>
+            <Typography variant="subtitle1" textAlign={'center'}>
+              {activeDescription}
+            </Typography>
             <Stack>
               <Typography
                 variant="h5"
@@ -151,7 +222,7 @@ const PokemonDetails = () => {
                 <StatItem
                   key={index}
                   name={formatText(stat?.name)}
-                  value={normalise(base_stat, 0, 252)}
+                  value={base_stat}
                   color={activeColor}
                 />
               ))}

@@ -16,6 +16,7 @@ export type StateProviderProps = {
 export type OutletContextProps = {
   data: Pokemon[]
   isLoading: boolean
+  descriptions: string[]
 }
 
 // Type declarations for API data
@@ -72,7 +73,7 @@ interface VersionGameIndex {
   /** The version relevent to this game index */
   version: NamedAPIResource
 }
-interface NamedAPIResource {
+export interface NamedAPIResource {
   /** The name of the referenced resource */
   name: string
   /** The URL of the referenced resource */

@@ -6,8 +6,6 @@ import {
   Pagination,
   TextField,
 } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import ClearIcon from '@mui/icons-material/Clear'
 import Pokecard from './PokeCard'
 import React from 'react'
 import { OutletContextProps } from '../App.props'
@@ -17,6 +15,7 @@ import PokeCardLoader from './PokeCardLoader'
 import { itemsPerPage } from '../utils/constants'
 import Fuse from 'fuse.js'
 import NoResults from './NoResults'
+import { ClearIcon, SearchIcon } from '../assets/icons'
 
 const PokeList = () => {
   const [query, setQuery] = React.useState('')
@@ -36,6 +35,7 @@ const PokeList = () => {
   // Calculate the range of items for the current page
   const startIndex = (page - 1) * itemsPerPage
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
+
   return (
     <Grid container flexWrap={'wrap'} spacing={{ xs: 3, md: 5 }}>
       <Grid
@@ -48,7 +48,6 @@ const PokeList = () => {
             id="basic-search"
             variant="outlined"
             disabled={isLoading}
-            autoFocus
             fullWidth
             placeholder="Search pokémon by name"
             value={query}
