@@ -9,13 +9,13 @@ import {
 import Pokecard from './PokeCard'
 import React from 'react'
 import { OutletContextProps } from '../App.props'
-import { useStateContext } from '../hooks/useStateContext'
 import { useOutletContext } from 'react-router-dom'
 import PokeCardLoader from './PokeCardLoader'
 import { itemsPerPage } from '../utils/constants'
 import Fuse from 'fuse.js'
 import NoResults from './NoResults'
 import { ClearIcon, SearchIcon } from '../assets/icons'
+import { useStateContext } from '../providers/StateProvider'
 
 const PokeList = () => {
   const [query, setQuery] = React.useState('')
@@ -25,9 +25,8 @@ const PokeList = () => {
   })
   const items = query ? fuse.search(query).map((val) => val?.item) : data
 
-  const state = useStateContext()
-  const page = state!.page
-  const setPage = state!.setPage
+  const { page, setPage } = useStateContext()
+
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
