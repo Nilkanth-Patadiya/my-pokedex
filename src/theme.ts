@@ -1,9 +1,12 @@
-import { createTheme, responsiveFontSizes } from '@mui/material'
+import { Theme, createTheme, responsiveFontSizes } from '@mui/material'
 
-const theme = createTheme({
+const theme: Theme = createTheme({
   palette: {
     primary: {
       main: '#622569',
+    },
+    info: {
+      main: '#FFD700',
     },
   },
 })

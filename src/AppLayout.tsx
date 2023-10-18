@@ -1,7 +1,9 @@
-import { Box, Grid, Link, Stack, Typography } from '@mui/material'
+import { Box, Fab, Grid, Link, Stack, Typography } from '@mui/material'
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { usePokeData, usePokeDescription } from './services/queries'
 import { useImgURL } from './hooks/useImgURL'
+import ScrollToTop from './components/ScrollToTop'
+import { KeyboardArrowUpIcon } from './assets/icons'
 
 const AppLayout = () => {
   const { data, isLoading } = usePokeData()
@@ -22,7 +24,7 @@ const AppLayout = () => {
         direction={'column'}
         sx={{ height: '100vh', flexWrap: 'nowrap' }}
       >
-        <Grid item py={1.25} bgcolor={'primary.main'}>
+        <Grid item py={1.25} bgcolor={'primary.main'} id="back-to-top-anchor">
           <Stack
             direction={'row'}
             gap={1}
@@ -101,6 +103,11 @@ const AppLayout = () => {
           </Stack>
         </Grid>
       </Grid>
+      <ScrollToTop>
+        <Fab size="medium" aria-label="scroll back to top" color="primary">
+          <KeyboardArrowUpIcon color="info" />
+        </Fab>
+      </ScrollToTop>
       <ScrollRestoration
         getKey={(location) => {
           return location.pathname
