@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Link, Stack, Typography } from '@mui/material'
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { usePokeData, usePokeDescription } from './services/queries'
 import { useImgURL } from './hooks/useImgURL'
@@ -56,15 +56,49 @@ const AppLayout = () => {
             isLoading: isLoading || isDescriptionLoading,
           }}
         />
-        <Grid item py={1} bgcolor={'primary.main'}>
-          <Typography
-            variant="h6"
-            textAlign={'center'}
-            color={'gold'}
-            sx={{ textShadow: '1px 1px black' }}
+        <Grid item p={2} bgcolor={'primary.main'}>
+          <Stack
+            direction={'row'}
+            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
           >
-            Made with &#x1F496; by Nilkanth Patadiya
-          </Typography>
+            <Stack direction={'row'} gap={0.5} sx={{ alignItems: 'center' }}>
+              <Typography
+                variant="h6"
+                color={'gold'}
+                sx={{ textShadow: '1px 1px black' }}
+              >
+                Powered by
+              </Typography>
+              <Link
+                href="https://pokeapi.co/"
+                target="_blank"
+                rel="noopener"
+                underline="none"
+              >
+                <Box
+                  component={'img'}
+                  width={60}
+                  height={30}
+                  sx={{
+                    width: 'auto',
+                    height: 'auto',
+                    maxWidth: 60,
+                    maxHeight: 30,
+                  }}
+                  src={'/pokeapi_logo.webp'}
+                  alt={'Pokeapi logo'}
+                />
+              </Link>
+            </Stack>
+            <Typography
+              variant="h6"
+              textAlign={'center'}
+              color={'gold'}
+              sx={{ textShadow: '1px 1px black' }}
+            >
+              Made with &#x1F496; by Nilkanth Patadiya
+            </Typography>
+          </Stack>
         </Grid>
       </Grid>
       <ScrollRestoration

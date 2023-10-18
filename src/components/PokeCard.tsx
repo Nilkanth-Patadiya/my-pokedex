@@ -72,7 +72,6 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             src={imgURL}
             alt={name}
             onLoad={() => setLoading(false)}
-            fetchpriority={id < 22 ? 'high' : 'auto'}
           />
         </Box>
 
