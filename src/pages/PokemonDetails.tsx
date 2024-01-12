@@ -45,7 +45,7 @@ const PokemonDetails = () => {
               p: 2,
             }}
           >
-            <Box sx={{ flex: '0 0 25%' }}>
+            <Box sx={{ flex: '0 0 28%' }}>
               <Button
                 color="inherit"
                 size="large"
@@ -55,13 +55,13 @@ const PokemonDetails = () => {
                 Go Back
               </Button>
             </Box>
-            <Stack gap={2} sx={{ flex: '0 0 50%' }}>
+            <Stack gap={2} sx={{ flex: '0 0 44%' }}>
               <Typography
                 color="inherit"
-                variant="h3"
+                variant="h4"
                 textTransform={'capitalize'}
                 textAlign={'center'}
-                sx={{ textShadow: `2px 2px #000` }}
+                sx={{ textShadow: `2px 2px 2px #000` }}
               >
                 {formatText(activeData?.name)}
               </Typography>
@@ -92,7 +92,7 @@ const PokemonDetails = () => {
                   component={'img'}
                   sx={{
                     width: 'auto',
-                    height: { md: 200 },
+                    height: { xs: 150, md: 200 },
                     position: 'absolute',
                     left: 0,
                     right: 0,
@@ -106,7 +106,7 @@ const PokemonDetails = () => {
                 />
               </Box>
             </Stack>
-            <Box sx={{ flex: '0 0 25%' }}>
+            <Box sx={{ flex: '0 0 28%' }}>
               <Typography
                 color="inherit"
                 variant="h6"
@@ -144,6 +144,7 @@ const PokemonDetails = () => {
               fontWeight={'medium'}
               color={activeColor}
               textAlign={'center'}
+              sx={{ textShadow: '1px 1px 2px black' }}
             >
               About
             </Typography>
@@ -197,7 +198,7 @@ const PokemonDetails = () => {
                       textAlign={'center'}
                       key={i}
                     >
-                      {elm?.move?.name}
+                      {formatText(elm?.move?.name)}
                     </Typography>
                   ))}
                 </Box>
@@ -215,6 +216,7 @@ const PokemonDetails = () => {
                 fontWeight={'medium'}
                 color={activeColor}
                 textAlign={'center'}
+                sx={{ textShadow: '1px 1px 2px black' }}
               >
                 Base Stats
               </Typography>

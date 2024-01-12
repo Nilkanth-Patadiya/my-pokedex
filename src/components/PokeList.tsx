@@ -36,7 +36,7 @@ const PokeList = () => {
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
 
   return (
-    <Grid container flexWrap={'wrap'} spacing={{ xs: 3, md: 5 }}>
+    <Grid container flexWrap={'wrap'} spacing={3}>
       <Grid
         item
         xs={12}
@@ -50,7 +50,10 @@ const PokeList = () => {
             fullWidth
             placeholder="Search pokémon by name"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setPage(1)
+              setQuery(e.target.value)
+            }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -82,7 +85,7 @@ const PokeList = () => {
         <PokeCardLoader />
       ) : items?.length > 0 ? (
         currentPageItems?.map(({ name, types, id }) => (
-          <Grid item xs={12} md={3} key={name}>
+          <Grid item xs={6} sm={4} md={3} xl={2} key={name}>
             <Pokecard name={name} id={id} type={types?.[0]?.type?.name} />
           </Grid>
         ))

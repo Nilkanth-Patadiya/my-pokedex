@@ -1,19 +1,16 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  CardActionArea,
-  Skeleton,
-} from '@mui/material'
 import { PokeCardProps } from '../App.props'
-
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { pokeTypeColors } from '../utils/constants'
+import { pokeTypeColors, pokemonImgURL } from '../utils/constants'
 import { formatText } from '../utils/helper'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import Box from '@mui/material/Box'
+import Skeleton from '@mui/material/Skeleton'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
 const Pokecard = ({ name, type, id }: PokeCardProps) => {
-  const imgURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
+  const imgURL = `${pokemonImgURL}/${id}.svg`
   const hoverColor = pokeTypeColors?.[type]
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
@@ -22,6 +19,17 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
       elevation={8}
       sx={{
         height: '100%',
+        '&:hover': {
+          animation: 'jump 0.3s ease-out 1',
+          '@keyframes jump': {
+            '0%': {
+              transform: 'translateY(-3px)',
+            },
+            '100%': {
+              transform: 'translateY(0px)',
+            },
+          },
+        },
       }}
     >
       <CardActionArea
@@ -30,7 +38,8 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
           navigate(`details?name=${name}`, { state: { id } })
         }}
         sx={{
-          p: 2,
+          pt: 2,
+          px: 2,
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
@@ -55,7 +64,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
           <Skeleton
             variant="rounded"
             width={'100%'}
-            sx={{ height: { md: 200 }, display: loading ? 'initial' : 'none' }}
+            sx={{ height: 180, display: loading ? 'initial' : 'none' }}
           />
           <Box
             component={'img'}
@@ -65,7 +74,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
               width: 'auto',
               height: 'auto',
               maxWidth: '100%',
-              maxHeight: 200,
+              maxHeight: 180,
               objectFit: 'contain',
               display: loading ? 'none' : 'initial',
             }}
@@ -78,9 +87,6 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
         <CardContent
           sx={{
             width: 1,
-            ':last-child': {
-              pb: 0,
-            },
           }}
         >
           {loading ? (
@@ -89,7 +95,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             <Typography
               variant="h6"
               textTransform={'uppercase'}
-              fontFamily={'cursive'}
+              fontFamily={'Alkatra Variable'}
               textAlign={'center'}
               fontWeight={'bold'}
             >

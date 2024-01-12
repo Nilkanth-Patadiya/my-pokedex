@@ -24,7 +24,7 @@ function ScrollToTop({ children }: React.PropsWithChildren<unknown>) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: 'fixed', bottom: 75, right: 26 }}
+        sx={{ position: 'fixed', bottom: 55, right: 15 }}
       >
         {children}
       </Box>

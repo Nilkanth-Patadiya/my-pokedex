@@ -21,7 +21,8 @@ const PokeCardLoader = () => {
         >
           <CardActionArea
             sx={{
-              p: 2,
+              pt: 2,
+              px: 2,
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -41,15 +42,12 @@ const PokeCardLoader = () => {
               <Skeleton
                 variant="rounded"
                 width={'100%'}
-                sx={{ height: { md: 200 } }}
+                sx={{ height: { md: 180 } }}
               />
             </Box>
             <CardContent
               sx={{
                 width: 1,
-                ':last-child': {
-                  pb: 0,
-                },
               }}
             >
               <Skeleton variant="text" sx={{ fontSize: '1.25rem' }} />

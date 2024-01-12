@@ -58,14 +58,18 @@ const AppLayout = () => {
             isLoading: isLoading || isDescriptionLoading,
           }}
         />
-        <Grid item p={2} bgcolor={'primary.main'}>
+        <Grid item py={1.5} px={3} bgcolor={'primary.main'}>
           <Stack
             direction={'row'}
             sx={{ alignItems: 'center', justifyContent: 'space-between' }}
           >
-            <Stack direction={'row'} gap={0.5} sx={{ alignItems: 'center' }}>
+            <Stack
+              direction={'row'}
+              gap={0.5}
+              sx={{ alignItems: 'center', alignContent: 'center' }}
+            >
               <Typography
-                variant="h6"
+                fontWeight={'bold'}
                 color={'gold'}
                 sx={{ textShadow: '1px 1px black' }}
               >
@@ -76,16 +80,17 @@ const AppLayout = () => {
                 target="_blank"
                 rel="noopener"
                 underline="none"
+                lineHeight={1}
               >
                 <Box
                   component={'img'}
-                  width={60}
-                  height={30}
+                  width={50}
+                  height={25}
                   sx={{
                     width: 'auto',
                     height: 'auto',
-                    maxWidth: 60,
-                    maxHeight: 30,
+                    maxWidth: 50,
+                    maxHeight: 25,
                   }}
                   src={'/pokeapi_logo.webp'}
                   alt={'Pokeapi logo'}
@@ -93,18 +98,33 @@ const AppLayout = () => {
               </Link>
             </Stack>
             <Typography
-              variant="h6"
+              fontWeight={'bold'}
               textAlign={'center'}
               color={'gold'}
               sx={{ textShadow: '1px 1px black' }}
             >
-              Made with &#x1F496; by Nilkanth Patadiya
+              Made with &#x1F496; by{' '}
+              <Link
+                fontWeight={'bold'}
+                color={'inherit'}
+                underline="hover"
+                href="https://github.com/Nilkanth-Patadiya/my-pokedex"
+                target="_blank"
+                rel="noopener"
+              >
+                Nilkanth Patadiya
+              </Link>
             </Typography>
           </Stack>
         </Grid>
       </Grid>
       <ScrollToTop>
-        <Fab size="medium" aria-label="scroll back to top" color="primary">
+        <Fab
+          size="medium"
+          aria-label="scroll back to top"
+          title="back to top"
+          color="primary"
+        >
           <KeyboardArrowUpIcon color="info" />
         </Fab>
       </ScrollToTop>
