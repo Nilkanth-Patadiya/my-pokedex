@@ -1,9 +1,14 @@
-import { Box, Fab, Grid, Link, Stack, Typography } from '@mui/material'
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { usePokeData, usePokeDescription } from './services/queries'
 import { useImgURL } from './hooks/useImgURL'
 import ScrollToTop from './components/ScrollToTop'
 import { KeyboardArrowUpIcon } from './assets/icons'
+import Grid from '@mui/material/Grid'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import Fab from '@mui/material/Fab'
 
 const AppLayout = () => {
   const { data, isLoading } = usePokeData()

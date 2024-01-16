@@ -1,11 +1,9 @@
-import {
-  Card,
-  CardActionArea,
-  Box,
-  Skeleton,
-  CardContent,
-  Grid,
-} from '@mui/material'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import Box from '@mui/material/Box'
+import Skeleton from '@mui/material/Skeleton'
+import CardContent from '@mui/material/CardContent'
+import Grid from '@mui/material/Grid'
 import { itemsPerPage } from '../utils/constants'
 
 const PokeCardLoader = () => {

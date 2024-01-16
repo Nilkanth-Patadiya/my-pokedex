@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import PokeList from '../components/PokeList'
 
 const Home = () => {

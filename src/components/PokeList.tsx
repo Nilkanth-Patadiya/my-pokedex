@@ -1,11 +1,3 @@
-import {
-  Box,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Pagination,
-  TextField,
-} from '@mui/material'
 import Pokecard from './PokeCard'
 import React from 'react'
 import { OutletContextProps } from '../App.props'
@@ -16,6 +8,14 @@ import Fuse from 'fuse.js'
 import NoResults from './NoResults'
 import { ClearIcon, SearchIcon } from '../assets/icons'
 import { useStateContext } from '../providers/StateProvider'
+import Grid from '@mui/material/Grid'
+import Pagination from '@mui/material/Pagination'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import InputAdornment from '@mui/material/InputAdornment'
+import IconButton from '@mui/material/IconButton'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Theme } from '@mui/material/styles'
 
 const PokeList = () => {
   const [query, setQuery] = React.useState('')
@@ -24,9 +24,9 @@ const PokeList = () => {
     keys: ['name'],
   })
   const items = query ? fuse.search(query).map((val) => val?.item) : data
+  const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
 
   const { page, setPage } = useStateContext()
-
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
@@ -102,8 +102,9 @@ const PokeList = () => {
         <Pagination
           color="primary"
           disabled={isLoading}
-          showFirstButton
-          showLastButton
+          showFirstButton={matches ? false : true}
+          showLastButton={matches ? false : true}
+          siblingCount={matches ? 0 : 1}
           variant="outlined"
           count={Math.round((items?.length ?? 20) / itemsPerPage)}
           page={page}

@@ -1,12 +1,3 @@
-import {
-  Box,
-  Button,
-  Chip,
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-} from '@mui/material'
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { OutletContextProps } from '../App.props'
 import { useImgURL } from '../hooks/useImgURL'
@@ -14,6 +5,13 @@ import { pokeTypeColors } from '../utils/constants'
 import StatItem from '../components/StatItem'
 import { formatText } from '../utils/helper'
 import { BackArrowIcon, HeightIcon, WeightIcon } from '../assets/icons'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
+import Chip from '@mui/material/Chip'
+import Divider from '@mui/material/Divider'
 
 const PokemonDetails = () => {
   const { data, descriptions } = useOutletContext<OutletContextProps>()

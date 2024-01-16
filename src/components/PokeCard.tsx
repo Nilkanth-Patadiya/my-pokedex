@@ -72,9 +72,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
             height={100}
             sx={{
               width: 'auto',
-              height: 'auto',
-              maxWidth: '100%',
-              maxHeight: 180,
+              height: { xs: 150, md: 175 },
               objectFit: 'contain',
               display: loading ? 'none' : 'initial',
             }}

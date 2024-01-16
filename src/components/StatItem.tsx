@@ -1,7 +1,10 @@
-import { Box, Divider, LinearProgress, Stack, Typography } from '@mui/material'
 import { StatItemProps } from '../App.props'
 import { normalise } from '../utils/helper'
-
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import LinearProgress from '@mui/material/LinearProgress'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 const StatItem = ({ name, value, color }: StatItemProps) => {
   return (
     <Stack

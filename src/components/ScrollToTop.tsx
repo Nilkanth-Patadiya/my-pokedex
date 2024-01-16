@@ -1,4 +1,6 @@
-import { Box, Fade, useScrollTrigger } from '@mui/material'
+import Box from '@mui/material/Box'
+import Fade from '@mui/material/Fade'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 function ScrollToTop({ children }: React.PropsWithChildren<unknown>) {
   const trigger = useScrollTrigger({
