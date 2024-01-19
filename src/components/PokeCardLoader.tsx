@@ -10,7 +10,7 @@ const PokeCardLoader = () => {
   return Array(itemsPerPage)
     .fill('')
     .map((_, index) => (
-      <Grid item xs={12} md={3} key={index + 'loader'}>
+      <Grid item xs={6} sm={4} md={3} xl={2} key={index + 'loader'}>
         <Card
           elevation={8}
           sx={{
@@ -40,12 +40,13 @@ const PokeCardLoader = () => {
               <Skeleton
                 variant="rounded"
                 width={'100%'}
-                sx={{ height: { md: 180 } }}
+                sx={{ height: { xs: 140, md: 180 } }}
               />
             </Box>
             <CardContent
               sx={{
                 width: 1,
+                px: 0,
               }}
             >
               <Skeleton variant="text" sx={{ fontSize: '1.25rem' }} />

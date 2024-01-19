@@ -12,6 +12,8 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Theme } from '@mui/material/styles'
 
 const PokemonDetails = () => {
   const { data, descriptions } = useOutletContext<OutletContextProps>()
@@ -22,8 +24,10 @@ const PokemonDetails = () => {
   const activeDescription = descriptions?.[dataID - 1]
   const activeColor = pokeTypeColors?.[activeData?.types?.[0]?.type?.name]
   const imgUrl = useImgURL('/pokeball_bg.svg')
+  const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
+
   return (
-    <Grid item flexGrow={1}>
+    <Grid item flexGrow={1} width={1}>
       <Grid
         container
         justifyContent={'center'}
@@ -31,7 +35,7 @@ const PokemonDetails = () => {
         sx={{
           background: `repeating-linear-gradient(45deg,${activeColor},${activeColor} 10px,#fff 10px,#fff 20px)`,
         }}
-        py={2}
+        py={{ xs: 0, sm: 2 }}
       >
         <Grid item xs={12} md={8}>
           <Box
@@ -40,20 +44,21 @@ const PokemonDetails = () => {
               color: 'whitesmoke',
               width: 1,
               bgcolor: activeColor,
-              p: 2,
+              py: 2,
+              px: { xs: 0, sm: 2 },
             }}
           >
-            <Box sx={{ flex: '0 0 28%' }}>
+            <Box sx={{ flex: { xs: '0 0 15%', md: '0 0 28%' } }}>
               <Button
                 color="inherit"
-                size="large"
+                size={matches ? 'small' : 'large'}
                 startIcon={<BackArrowIcon />}
                 onClick={() => navigate('/pokemons')}
               >
-                Go Back
+                {matches ? 'Back' : 'Go Back'}
               </Button>
             </Box>
-            <Stack gap={2} sx={{ flex: '0 0 44%' }}>
+            <Stack gap={2} sx={{ flex: { xs: '0 0 70%', md: '0 0 44%' } }}>
               <Typography
                 color="inherit"
                 variant="h4"
@@ -90,12 +95,12 @@ const PokemonDetails = () => {
                   component={'img'}
                   sx={{
                     width: 'auto',
+                    maxWidth: '100%',
                     height: { xs: 150, md: 200 },
                     position: 'absolute',
-                    left: 0,
-                    right: 0,
-                    m: '0 auto',
-                    top: '20%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translateY(-50%) translateX(-50%)',
                   }}
                   src={
                     activeData?.sprites?.other?.dream_world?.front_default ?? ''
@@ -104,7 +109,7 @@ const PokemonDetails = () => {
                 />
               </Box>
             </Stack>
-            <Box sx={{ flex: '0 0 28%' }}>
+            <Box sx={{ flex: { xs: '0 0 15%', md: '0 0 28%' } }}>
               <Typography
                 color="inherit"
                 variant="h6"
@@ -156,7 +161,7 @@ const PokemonDetails = () => {
                 sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
                 <Stack direction={'row'} gap={1} alignItems={'center'}>
-                  <WeightIcon fontSize="large" />
+                  <WeightIcon fontSize={matches ? 'medium' : 'large'} />
                   <Typography>
                     {(activeData?.weight / 10).toLocaleString('en', {
                       style: 'unit',
@@ -173,7 +178,7 @@ const PokemonDetails = () => {
                 sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
                 <Stack direction={'row'} gap={1} alignItems={'center'}>
-                  <HeightIcon fontSize="large" />
+                  <HeightIcon fontSize={matches ? 'medium' : 'large'} />
                   <Typography>
                     {(activeData?.height / 10).toLocaleString('en', {
                       style: 'unit',

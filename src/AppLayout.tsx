@@ -29,7 +29,13 @@ const AppLayout = () => {
         direction={'column'}
         sx={{ height: '100vh', flexWrap: 'nowrap' }}
       >
-        <Grid item py={1.25} bgcolor={'primary.main'} id="back-to-top-anchor">
+        <Grid
+          item
+          width={1}
+          py={1.25}
+          bgcolor={'primary.main'}
+          id="back-to-top-anchor"
+        >
           <Stack
             direction={'row'}
             gap={1}
@@ -63,15 +69,22 @@ const AppLayout = () => {
             isLoading: isLoading || isDescriptionLoading,
           }}
         />
-        <Grid item py={1.5} px={3} bgcolor={'primary.main'}>
+        <Grid item width={1} py={1.5} px={3} bgcolor={'primary.main'}>
           <Stack
             direction={'row'}
-            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+            sx={{
+              alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'space-between' },
+            }}
           >
             <Stack
               direction={'row'}
               gap={0.5}
-              sx={{ alignItems: 'center', alignContent: 'center' }}
+              sx={{
+                alignItems: 'center',
+                alignContent: 'center',
+                display: { xs: 'none', md: 'flex' },
+              }}
             >
               <Typography
                 fontWeight={'bold'}

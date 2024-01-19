@@ -23,10 +23,10 @@ const StatItem = ({ name, value, color }: StatItemProps) => {
         {name}
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', flex: '1 1 80%' }}>
-        <Box sx={{ flex: '1 1 5%' }}>
+        <Box sx={{ flex: { xs: '1 1 25%', md: '1 1 5%' } }}>
           <Typography color="#666">{value}</Typography>
         </Box>
-        <Box sx={{ flex: '1 1 95%' }}>
+        <Box sx={{ flex: { xs: '1 1 75%', md: '1 1 95%' } }}>
           <LinearProgress
             sx={{ borderRadius: 2, height: '6px' }}
             color={'inherit'}
