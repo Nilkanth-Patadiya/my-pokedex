@@ -1,7 +1,12 @@
 <h1 align="center">Pokédex</h1>
 
-## 📝 Table of Contents
+![GitHub License](https://img.shields.io/github/license/Nilkanth-Patadiya/my-pokedex?color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/Nilkanth-Patadiya/my-pokedex?color=%23610C9F)
+![GitHub top language](https://img.shields.io/github/languages/top/Nilkanth-Patadiya/my-pokedex?logo=typescript)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Nilkanth-Patadiya/my-pokedex/main)
+![GitHub Repo stars](https://img.shields.io/github/stars/Nilkanth-Patadiya/my-pokedex)
 
+## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Built Using](#built_using)
