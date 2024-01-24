@@ -27,15 +27,9 @@ const AppLayout = () => {
       <Grid
         container
         direction={'column'}
-        sx={{ height: '100vh', flexWrap: 'nowrap' }}
+        sx={{ minHeight: '100vh', flexWrap: 'nowrap' }}
       >
-        <Grid
-          item
-          width={1}
-          py={1.25}
-          bgcolor={'primary.main'}
-          id="back-to-top-anchor"
-        >
+        <Grid item py={1.25} bgcolor={'primary.main'} id="back-to-top-anchor">
           <Stack
             direction={'row'}
             gap={1}
@@ -69,7 +63,7 @@ const AppLayout = () => {
             isLoading: isLoading || isDescriptionLoading,
           }}
         />
-        <Grid item width={1} py={1.5} px={3} bgcolor={'primary.main'}>
+        <Grid item py={1.5} px={3} bgcolor={'primary.main'}>
           <Stack
             direction={'row'}
             sx={{

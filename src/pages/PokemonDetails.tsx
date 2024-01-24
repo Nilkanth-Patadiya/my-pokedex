@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { OutletContextProps } from '../App.props'
 import { useImgURL } from '../hooks/useImgURL'
-import { pokeTypeColors } from '../utils/constants'
+import { pokeTypeColors, shortStatNames } from '../utils/constants'
 import StatItem from '../components/StatItem'
 import { formatText } from '../utils/helper'
 import { BackArrowIcon, HeightIcon, WeightIcon } from '../assets/icons'
@@ -27,15 +27,18 @@ const PokemonDetails = () => {
   const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
 
   return (
-    <Grid item flexGrow={1} width={1}>
+    <Grid item flexGrow={1}>
       <Grid
         container
         justifyContent={'center'}
         height={1}
         sx={{
-          background: `repeating-linear-gradient(45deg,${activeColor},${activeColor} 10px,#fff 10px,#fff 20px)`,
+          background: {
+            xs: 'none',
+            sm: `repeating-linear-gradient(45deg,${activeColor},${activeColor} 10px,#fff 10px,#fff 20px)`,
+          },
         }}
-        py={{ xs: 0, sm: 2 }}
+        py={{ xs: 0, md: 2 }}
       >
         <Grid item xs={12} md={8}>
           <Box
@@ -45,10 +48,10 @@ const PokemonDetails = () => {
               width: 1,
               bgcolor: activeColor,
               py: 2,
-              px: { xs: 0, sm: 2 },
+              px: { xs: 1, sm: 2 },
             }}
           >
-            <Box sx={{ flex: { xs: '0 0 15%', md: '0 0 28%' } }}>
+            <Box sx={{ flex: { xs: '1 1 15%', sm: '1 1 28%' } }}>
               <Button
                 color="inherit"
                 size={matches ? 'small' : 'large'}
@@ -58,7 +61,7 @@ const PokemonDetails = () => {
                 {matches ? 'Back' : 'Go Back'}
               </Button>
             </Box>
-            <Stack gap={2} sx={{ flex: { xs: '0 0 70%', md: '0 0 44%' } }}>
+            <Stack gap={2} sx={{ flex: { xs: '1 1 70%', sm: '1 1 44%' } }}>
               <Typography
                 color="inherit"
                 variant="h4"
@@ -109,11 +112,11 @@ const PokemonDetails = () => {
                 />
               </Box>
             </Stack>
-            <Box sx={{ flex: { xs: '0 0 15%', md: '0 0 28%' } }}>
+            <Box sx={{ flex: { xs: '1 1 15%', sm: '1 1 28%' } }}>
               <Typography
                 color="inherit"
                 variant="h6"
-                textAlign={'end'}
+                textAlign={{ xs: 'center', sm: 'end' }}
                 fontWeight={'bold'}
               >
                 {`#${activeData?.id?.toLocaleString('en', {
@@ -153,7 +156,7 @@ const PokemonDetails = () => {
             </Typography>
             <Stack
               direction={'row'}
-              gap={3}
+              gap={{ xs: 1.5, md: 3 }}
               divider={<Divider orientation="vertical" flexItem />}
             >
               <Stack
@@ -226,7 +229,11 @@ const PokemonDetails = () => {
               {activeData?.stats?.map(({ base_stat, stat }, index) => (
                 <StatItem
                   key={index}
-                  name={formatText(stat?.name)}
+                  name={
+                    matches
+                      ? shortStatNames?.[formatText(stat?.name)]
+                      : formatText(stat?.name)
+                  }
                   value={base_stat}
                   color={activeColor}
                 />

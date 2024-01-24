@@ -18,15 +18,21 @@ const StatItem = ({ name, value, color }: StatItemProps) => {
         variant="subtitle1"
         color={'inherit'}
         textTransform={'uppercase'}
-        sx={{ flex: '1 1 20%' }}
+        sx={{ flex: { xs: '1 1 25%', sm: '1 1 20%' } }}
       >
         {name}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', flex: '1 1 80%' }}>
-        <Box sx={{ flex: { xs: '1 1 25%', md: '1 1 5%' } }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flex: { xs: '1 1 75%', sm: '1 1 80%' },
+        }}
+      >
+        <Box sx={{ flex: { xs: '1 1 15%', md: '1 1 5%' } }}>
           <Typography color="#666">{value}</Typography>
         </Box>
-        <Box sx={{ flex: { xs: '1 1 75%', md: '1 1 95%' } }}>
+        <Box sx={{ flex: { xs: '1 1 85%', md: '1 1 95%' } }}>
           <LinearProgress
             sx={{ borderRadius: 2, height: '6px' }}
             color={'inherit'}

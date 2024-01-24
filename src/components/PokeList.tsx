@@ -42,7 +42,7 @@ const PokeList = () => {
         xs={12}
         sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <Box sx={{ width: { xs: 1, md: 0.25 } }}>
+        <Box sx={{ width: { xs: 1, sm: 0.5, md: 0.25 } }}>
           <TextField
             id="basic-search"
             variant="outlined"

@@ -24,3 +24,11 @@ export const pokeTypeColors: Record<string, string> = {
   unknown: '',
   shadow: '',
 }
+export const shortStatNames: Record<string, string> = {
+  hp: 'hp',
+  attack: 'attack',
+  defense: 'defense',
+  speed: 'speed',
+  'special attack': 'sp. atk',
+  'special defense': 'sp. def',
+}

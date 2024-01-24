@@ -64,7 +64,10 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
           <Skeleton
             variant="rounded"
             width={'100%'}
-            sx={{ height: 180, display: loading ? 'initial' : 'none' }}
+            sx={{
+              height: { xs: 140, md: 180 },
+              display: loading ? 'initial' : 'none',
+            }}
           />
           <Box
             component={'img'}
