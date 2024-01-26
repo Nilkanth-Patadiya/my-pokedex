@@ -1,4 +1,5 @@
 <h1 align="center">Pokédex</h1>
+<div align="center">
 
 ![GitHub License](https://img.shields.io/github/license/Nilkanth-Patadiya/my-pokedex?color=blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Nilkanth-Patadiya/my-pokedex?color=%23610C9F)
@@ -6,7 +7,19 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Nilkanth-Patadiya/my-pokedex/main)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Nilkanth-Patadiya/my-pokedex)
 
+</div>
+
+<p align="center" width="100%">
+<img
+  src="public/pokedex-multiple-devices.png"
+  alt="Alt text"
+  title="Optional title"
+  width="75%"
+  height="auto" />
+</p>
+
 ## 📝 Table of Contents
+
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Built Using](#built_using)
@@ -18,7 +31,6 @@
 ⚡️ User can view more details by clicking on the particular pokémon.\
 ⚡️ It is fully responsive & user friendly website.\
 ⚡️ The design features some animations and hover effects.
-
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -49,6 +61,7 @@ Make sure you have installed all of the following prerequisites on your machine:
    ```
    npm install
    ```
+
    This creates a **node_modules** folder and installs all packages from the package.json file into that folder. You may see a few warnings during this process, but you should not see any errors.
 
 4. In the same command window (or the Command prompt in VS Code), type
@@ -56,6 +69,7 @@ Make sure you have installed all of the following prerequisites on your machine:
    ```
    npm run dev
    ```
+
    The application should then run successfully and you should see a message like **" VITE v4.x.x ready in xxx ms Local: http://localhost:5173/"**.
 
 5. Open **http://localhost:5173** to view it in the browser.
