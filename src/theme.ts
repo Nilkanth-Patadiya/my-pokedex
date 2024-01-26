@@ -8,6 +8,9 @@ const theme: Theme = createTheme({
     info: {
       main: '#FFD700',
     },
+    text: {
+      primary: '#343434',
+    },
   },
 })
 
