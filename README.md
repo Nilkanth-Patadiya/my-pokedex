@@ -80,6 +80,8 @@ Make sure you have installed all of the following prerequisites on your machine:
 - [React](https://react.dev/) - User Interface (UI) library
 - [Typescript](https://www.typescriptlang.org/) - Strongly typed programming language
 - [Material UI](https://mui.com/material-ui/) - React UI component library
+- [Axios](https://axios-http.com/) - a simple promise based HTTP client for the browser
+- [React Query](https://tanstack.com/query/v3/docs/framework/react/overview) - Powerful asynchronous state management library
 - [fuse.js](https://www.fusejs.io/) - Powerful, lightweight fuzzy-search library, with zero dependencies
 
 ## ✍️ Authors <a name = "authors"></a>
