@@ -97,7 +97,11 @@ const PokeList = () => {
       <Grid
         item
         xs={12}
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        sx={{
+          display: items?.length > 0 ? 'flex' : 'none',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         <Pagination
           color="primary"
