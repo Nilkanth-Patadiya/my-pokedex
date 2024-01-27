@@ -11,9 +11,7 @@
 
 <p align="center" width="100%">
 <img
-  src="public/pokedex-multiple-devices.png"
-  alt="Alt text"
-  title="Optional title"
+  src="https://drive.google.com/uc?id=1PtGtuH65mNzLVCrfeh-8KEiGYt2IIoA5"
   width="75%"
   height="auto" />
 </p>
