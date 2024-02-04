@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider'
 import LinearProgress from '@mui/material/LinearProgress'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-const StatItem = ({ name, value, color }: StatItemProps) => {
+const StatItem = ({ name, value, color, maxStat }: StatItemProps) => {
   return (
     <Stack
       direction={'row'}
@@ -37,7 +37,7 @@ const StatItem = ({ name, value, color }: StatItemProps) => {
             sx={{ borderRadius: 2, height: '6px' }}
             color={'inherit'}
             variant="determinate"
-            value={normalise(value, 0, 252)}
+            value={normalise(value, 0, maxStat)}
           />
         </Box>
       </Box>

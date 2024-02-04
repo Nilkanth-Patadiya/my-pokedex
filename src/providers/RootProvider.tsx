@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider } from 'react-router-dom'
 import { router } from '../App.routes'
 import StateProvider from './StateProvider'
 import { responsiveTheme } from '../theme'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const RootProvider = () => {
   const queryClient = new QueryClient({
     defaultOptions: {

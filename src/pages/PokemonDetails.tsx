@@ -14,15 +14,25 @@ import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
+import Skeleton from '@mui/material/Skeleton'
+import { useMemo } from 'react'
 
 const PokemonDetails = () => {
-  const { data, descriptions } = useOutletContext<OutletContextProps>()
+  const { data, descriptions, isDescriptionLoading } =
+    useOutletContext<OutletContextProps>()
   const location = useLocation()
   const navigate = useNavigate()
   const dataID = location?.state?.id
   const activeData = data?.filter((elm) => elm?.id === dataID)?.[0]
   const activeDescription = descriptions?.[dataID - 1]
   const activeColor = pokeTypeColors?.[activeData?.types?.[0]?.type?.name]
+  const maxStat = useMemo(
+    () =>
+      activeData?.stats?.reduce((acc, value) => {
+        return (acc = acc > value?.base_stat ? acc : value?.base_stat)
+      }, 0),
+    [activeData?.stats]
+  )
   const imgUrl = useImgURL('/pokeball_bg.svg')
   const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
 
@@ -81,15 +91,7 @@ const PokemonDetails = () => {
                   sx={{
                     width: 1,
                     height: 'auto',
-                    animation: 'spin 2s linear 2',
-                    '@keyframes spin': {
-                      '0%': {
-                        transform: 'rotate(360deg)',
-                      },
-                      '100%': {
-                        transform: 'rotate(00deg)',
-                      },
-                    },
+                    aspectRatio: '1/1',
                   }}
                   src={imgUrl}
                   alt={'Pokeball background'}
@@ -103,7 +105,19 @@ const PokemonDetails = () => {
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
-                    transform: 'translateY(-50%) translateX(-50%)',
+                    animation: 'floating 3s ease-in-out infinite',
+                    '@keyframes floating': {
+                      '0%': {
+                        transform: 'translateY(-50%) translateX(-50%)',
+                      },
+                      '50%': {
+                        transform:
+                          'translateY(-50%) translateX(-50%) translateY(-5px)',
+                      },
+                      '100%': {
+                        transform: 'translateY(-50%) translateX(-50%)',
+                      },
+                    },
                   }}
                   src={
                     activeData?.sprites?.other?.dream_world?.front_default ?? ''
@@ -213,9 +227,16 @@ const PokemonDetails = () => {
                 </Typography>
               </Stack>
             </Stack>
-            <Typography variant="subtitle1" textAlign={'center'}>
-              {activeDescription}
-            </Typography>
+            {isDescriptionLoading ? (
+              <>
+                <Skeleton />
+                <Skeleton />
+              </>
+            ) : (
+              <Typography variant="subtitle1" textAlign={'center'}>
+                {activeDescription}
+              </Typography>
+            )}
             <Stack>
               <Typography
                 variant="h5"
@@ -236,6 +257,7 @@ const PokemonDetails = () => {
                   }
                   value={base_stat}
                   color={activeColor}
+                  maxStat={maxStat}
                 />
               ))}
             </Stack>

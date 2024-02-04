@@ -8,6 +8,7 @@ export type StatItemProps = {
   name: string
   value: number
   color: string
+  maxStat: number
 }
 export type StateProviderProps = {
   page: number
@@ -16,6 +17,7 @@ export type StateProviderProps = {
 export type OutletContextProps = {
   data: Pokemon[]
   isLoading: boolean
+  isDescriptionLoading: boolean
   descriptions: string[]
 }
 

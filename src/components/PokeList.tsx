@@ -24,17 +24,15 @@ const PokeList = () => {
     keys: ['name'],
   })
   const items = query ? fuse.search(query).map((val) => val?.item) : data
-  const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
-
   const { page, setPage } = useStateContext()
   const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
-
   // Calculate the range of items for the current page
   const startIndex = (page - 1) * itemsPerPage
   const currentPageItems = items?.slice(startIndex, startIndex + itemsPerPage)
 
+  const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   return (
     <Grid container flexWrap={'wrap'} spacing={3}>
       <Grid
@@ -65,6 +63,7 @@ const PokeList = () => {
                   <IconButton
                     onClick={() => setQuery('')}
                     sx={{ '&:hover': { bgcolor: 'initial' } }}
+                    title="clear text"
                   >
                     <ClearIcon />
                   </IconButton>

@@ -60,7 +60,8 @@ const AppLayout = () => {
           context={{
             data,
             descriptions,
-            isLoading: isLoading || isDescriptionLoading,
+            isLoading,
+            isDescriptionLoading,
           }}
         />
         <Grid item py={1.5} px={3} bgcolor={'primary.main'}>
