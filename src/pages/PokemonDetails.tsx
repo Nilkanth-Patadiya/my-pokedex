@@ -228,10 +228,10 @@ const PokemonDetails = () => {
               </Stack>
             </Stack>
             {isDescriptionLoading ? (
-              <>
+              <Box>
                 <Skeleton />
                 <Skeleton />
-              </>
+              </Box>
             ) : (
               <Typography variant="subtitle1" textAlign={'center'}>
                 {activeDescription}
