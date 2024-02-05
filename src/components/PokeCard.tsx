@@ -20,22 +20,14 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
       sx={{
         height: '100%',
         '&:hover': {
-          animation: 'jump 0.3s ease-out 1',
-          '@keyframes jump': {
-            '0%': {
-              transform: 'translateY(-3px)',
-            },
-            '100%': {
-              transform: 'translateY(0px)',
-            },
-          },
+          transform: 'scale(1.05)',
         },
       }}
     >
       <CardActionArea
         disabled={loading}
         onClick={() => {
-          navigate(`details?name=${name}`, { state: { id } })
+          navigate(`pokemon-details?name=${name}`, { state: { id } })
         }}
         sx={{
           pt: 2,

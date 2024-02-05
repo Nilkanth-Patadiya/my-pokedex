@@ -1,6 +1,9 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom'
-import { usePokeData, usePokeDescription } from './services/queries'
-import { useImgURL } from './hooks/useImgURL'
+import {
+  useInitialData,
+  usePokeData,
+  usePokeDescription,
+} from './services/queries'
 import ScrollToTop from './components/ScrollToTop'
 import { KeyboardArrowUpIcon } from './assets/icons'
 import Grid from '@mui/material/Grid'
@@ -11,23 +14,23 @@ import Link from '@mui/material/Link'
 import Fab from '@mui/material/Fab'
 
 const AppLayout = () => {
-  const { data, isLoading } = usePokeData()
-  const { data: descriptionData, isLoading: isDescriptionLoading } =
-    usePokeDescription(data?.map((elm) => elm?.species) ?? [])
-  const imgUrl = useImgURL('/pokeball.png')
-  const descriptions = descriptionData?.map(
-    (elm) =>
-      elm?.flavor_text_entries.filter?.(
-        (elm: { version: { name: string } }) => elm?.version?.name === 'emerald'
-      )?.[0]?.flavor_text
-  )
+  const { data: initialData, isLoading } = useInitialData()
+  const { data, pending } = usePokeData(initialData?.results ?? [])
+  const { data: descriptions, pending: isDescriptionLoading } =
+    usePokeDescription(data?.map((elm) => elm?.species))
 
   return (
     <>
       <Grid
         container
         direction={'column'}
-        sx={{ minHeight: '100vh', flexWrap: 'nowrap' }}
+        sx={{
+          minHeight: '100vh',
+          flexWrap: 'nowrap',
+          backgroundColor: '#e5e5f7',
+          backgroundImage: 'radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px)',
+          backgroundSize: '10px 10px',
+        }}
       >
         <Grid item py={1.25} bgcolor={'primary.main'} id="back-to-top-anchor">
           <Stack
@@ -51,7 +54,7 @@ const AppLayout = () => {
                 width: 'auto',
                 height: 40,
               }}
-              src={imgUrl}
+              src={'/pokeball.png'}
               alt={'Pokeball'}
             />
           </Stack>
@@ -60,7 +63,7 @@ const AppLayout = () => {
           context={{
             data,
             descriptions,
-            isLoading,
+            isLoading: isLoading || pending,
             isDescriptionLoading,
           }}
         />

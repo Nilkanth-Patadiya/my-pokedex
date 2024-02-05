@@ -1,9 +1,8 @@
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { OutletContextProps } from '../App.props'
-import { useImgURL } from '../hooks/useImgURL'
 import { pokeTypeColors, shortStatNames } from '../utils/constants'
 import StatItem from '../components/StatItem'
-import { formatText } from '../utils/helper'
+import { formatDescription, formatText } from '../utils/helper'
 import { BackArrowIcon, HeightIcon, WeightIcon } from '../assets/icons'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -33,7 +32,6 @@ const PokemonDetails = () => {
       }, 0),
     [activeData?.stats]
   )
-  const imgUrl = useImgURL('/pokeball_bg.svg')
   const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
 
   return (
@@ -66,7 +64,7 @@ const PokemonDetails = () => {
                 color="inherit"
                 size={matches ? 'small' : 'large'}
                 startIcon={<BackArrowIcon />}
-                onClick={() => navigate('/pokemons')}
+                onClick={() => navigate('/')}
               >
                 {matches ? 'Back' : 'Go Back'}
               </Button>
@@ -93,7 +91,7 @@ const PokemonDetails = () => {
                     height: 'auto',
                     aspectRatio: '1/1',
                   }}
-                  src={imgUrl}
+                  src={'/pokeball_bg.svg'}
                   alt={'Pokeball background'}
                 />
                 <Box
@@ -101,7 +99,7 @@ const PokemonDetails = () => {
                   sx={{
                     width: 'auto',
                     maxWidth: '100%',
-                    height: { xs: 150, md: 200 },
+                    height: { xs: 150, md: '50%' },
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
@@ -177,7 +175,7 @@ const PokemonDetails = () => {
                 gap={1}
                 sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
-                <Stack direction={'row'} gap={1} alignItems={'center'}>
+                <Stack direction={'row'} alignItems={'center'}>
                   <WeightIcon fontSize={matches ? 'medium' : 'large'} />
                   <Typography>
                     {(activeData?.weight / 10).toLocaleString('en', {
@@ -194,7 +192,7 @@ const PokemonDetails = () => {
                 gap={1}
                 sx={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
-                <Stack direction={'row'} gap={1} alignItems={'center'}>
+                <Stack direction={'row'} alignItems={'center'}>
                   <HeightIcon fontSize={matches ? 'medium' : 'large'} />
                   <Typography>
                     {(activeData?.height / 10).toLocaleString('en', {
@@ -234,7 +232,7 @@ const PokemonDetails = () => {
               </Box>
             ) : (
               <Typography variant="subtitle1" textAlign={'center'}>
-                {activeDescription}
+                {formatDescription(activeDescription)}
               </Typography>
             )}
             <Stack>

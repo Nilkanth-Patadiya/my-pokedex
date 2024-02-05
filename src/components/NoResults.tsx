@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { useImgURL } from '../hooks/useImgURL'
 
 const NoResults = ({ query }: { query: string }) => {
-  const imgURL = useImgURL('/Search.svg')
   return (
     <Stack
       gap={3}
@@ -22,7 +20,7 @@ const NoResults = ({ query }: { query: string }) => {
           maxHeight: 200,
           objectFit: 'contain',
         }}
-        src={imgURL}
+        src={'/Search.svg'}
         alt={'No results found'}
       />
       <Typography variant="h6">{`No Results Found for "${query}"`}</Typography>
