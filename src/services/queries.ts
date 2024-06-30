@@ -1,10 +1,5 @@
 import axios from 'axios'
-import {
-  NamedAPIResource,
-  PokeList,
-  Pokemon,
-  PokemonSpecies,
-} from '../App.props'
+import { NamedAPIResource, PokeList, Pokemon, PokemonSpecies } from '../Props'
 import { totalItems } from '../utils/constants'
 import { useQueries, useQuery } from '@tanstack/react-query'
 
@@ -49,7 +44,7 @@ export const usePokeDescription = (arr: NamedAPIResource[]) => {
           (result) =>
             result?.data?.data?.flavor_text_entries?.filter?.(
               (elm) => elm?.version?.name === 'emerald'
-            )?.[0]?.flavor_text
+            )?.[0]?.flavor_text as string
         ),
         pending: results?.some((result) => result?.isPending),
       }

@@ -1,7 +1,7 @@
-import { PokeCardProps } from '../App.props'
+import { PokeCardProps } from '../Props'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { pokeTypeColors, pokemonImgURL } from '../utils/constants'
+import { pokemonImgURL } from '../utils/constants'
 import { formatText } from '../utils/helper'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
@@ -9,9 +9,8 @@ import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-const Pokecard = ({ name, type, id }: PokeCardProps) => {
+const Pokecard = ({ name, id }: PokeCardProps) => {
   const imgURL = `${pokemonImgURL}/${id}.svg`
-  const hoverColor = pokeTypeColors?.[type]
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   return (
@@ -27,7 +26,7 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
       <CardActionArea
         disabled={loading}
         onClick={() => {
-          navigate(`pokemon-details?name=${name}`, { state: { id } })
+          navigate(`pokemon-details?name=${name}`, { state: { name, id } })
         }}
         sx={{
           pt: 2,
@@ -36,12 +35,6 @@ const Pokecard = ({ name, type, id }: PokeCardProps) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          border: 2,
-          borderColor: 'transparent',
-          '&:hover': {
-            borderColor: hoverColor,
-            '& .MuiTypography-root': { color: hoverColor, fontWeight: 600 },
-          },
         }}
       >
         <Box

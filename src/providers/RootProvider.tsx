@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { RouterProvider } from 'react-router-dom'
-import { router } from '../App.routes'
+import { router } from '../Router'
 import StateProvider from './StateProvider'
 import { responsiveTheme } from '../theme'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

@@ -1,9 +1,5 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom'
-import {
-  useInitialData,
-  usePokeData,
-  usePokeDescription,
-} from './services/queries'
+import { useInitialData } from './services/queries'
 import ScrollToTop from './components/ScrollToTop'
 import { KeyboardArrowUpIcon } from './assets/icons'
 import Grid from '@mui/material/Grid'
@@ -13,11 +9,8 @@ import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import Fab from '@mui/material/Fab'
 
-const AppLayout = () => {
-  const { data: initialData, isLoading } = useInitialData()
-  const { data, pending } = usePokeData(initialData?.results ?? [])
-  const { data: descriptions, pending: isDescriptionLoading } =
-    usePokeDescription(data?.map((elm) => elm?.species))
+const Layout = () => {
+  const { data, isLoading } = useInitialData()
 
   return (
     <>
@@ -61,10 +54,8 @@ const AppLayout = () => {
         </Grid>
         <Outlet
           context={{
-            data,
-            descriptions,
-            isLoading: isLoading || pending,
-            isDescriptionLoading,
+            data: data?.results,
+            isLoading: isLoading,
           }}
         />
         <Grid item py={1.5} px={3} bgcolor={'primary.main'}>
@@ -153,4 +144,4 @@ const AppLayout = () => {
   )
 }
 
-export default AppLayout
+export default Layout

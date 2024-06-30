@@ -1,4 +1,4 @@
-import { StatItemProps } from '../App.props'
+import { StatItemProps } from '../Props'
 import { normalise } from '../utils/helper'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'

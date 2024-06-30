@@ -1,7 +1,6 @@
 //Type declarations for component props
 export type PokeCardProps = {
   name: string
-  type: string
   id: number
 }
 export type StatItemProps = {
@@ -13,12 +12,11 @@ export type StatItemProps = {
 export type StateProviderProps = {
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
+  oldPage: number
 }
 export type OutletContextProps = {
-  data: Pokemon[]
+  data: NamedAPIResource[]
   isLoading: boolean
-  isDescriptionLoading: boolean
-  descriptions: string[]
 }
 
 // Type declarations for API data

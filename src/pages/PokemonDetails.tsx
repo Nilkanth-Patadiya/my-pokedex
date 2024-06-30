@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
-import { OutletContextProps } from '../App.props'
+import { OutletContextProps } from '../Props'
 import { pokeTypeColors, shortStatNames } from '../utils/constants'
 import StatItem from '../components/StatItem'
 import { formatDescription, formatText } from '../utils/helper'
@@ -11,19 +11,29 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
+import Modal from '@mui/material/Modal'
+import CircularProgress from '@mui/material/CircularProgress'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
 import Skeleton from '@mui/material/Skeleton'
 import { useMemo } from 'react'
+import { usePokeData, usePokeDescription } from '../services/queries'
 
 const PokemonDetails = () => {
-  const { data, descriptions, isDescriptionLoading } =
-    useOutletContext<OutletContextProps>()
   const location = useLocation()
   const navigate = useNavigate()
-  const dataID = location?.state?.id
-  const activeData = data?.filter((elm) => elm?.id === dataID)?.[0]
-  const activeDescription = descriptions?.[dataID - 1]
+
+  const { data: initialData } = useOutletContext<OutletContextProps>()
+  const activePokemon = initialData?.filter(
+    (elm) => elm?.name === location?.state?.name
+  )
+
+  const { data, pending } = usePokeData(activePokemon ?? [])
+  const { data: descriptions, pending: isDescriptionLoading } =
+    usePokeDescription(data?.map((elm) => elm?.species))
+  const isLoading = pending || isDescriptionLoading
+  const activeData = data?.[0]
+  const activeDescription = descriptions?.[0]
   const activeColor = pokeTypeColors?.[activeData?.types?.[0]?.type?.name]
   const maxStat = useMemo(
     () =>
@@ -77,7 +87,7 @@ const PokemonDetails = () => {
                 textAlign={'center'}
                 sx={{ textShadow: `2px 2px 2px #000` }}
               >
-                {formatText(activeData?.name)}
+                {formatText(location?.state?.name)}
               </Typography>
               <Box
                 sx={{
@@ -131,7 +141,7 @@ const PokemonDetails = () => {
                 textAlign={{ xs: 'center', sm: 'end' }}
                 fontWeight={'bold'}
               >
-                {`#${activeData?.id?.toLocaleString('en', {
+                {`#${(activeData?.id || 0).toLocaleString('en', {
                   minimumIntegerDigits: 3,
                 })}`}
               </Typography>
@@ -225,7 +235,7 @@ const PokemonDetails = () => {
                 </Typography>
               </Stack>
             </Stack>
-            {isDescriptionLoading ? (
+            {isLoading ? (
               <Box>
                 <Skeleton />
                 <Skeleton />
@@ -260,6 +270,24 @@ const PokemonDetails = () => {
               ))}
             </Stack>
           </Stack>
+          <Modal
+            open={isLoading}
+            aria-labelledby="loading-modal"
+            aria-describedby="loading-modal"
+          >
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                py: 4,
+                px: 8,
+              }}
+            >
+              <CircularProgress color="info" size={60} />
+            </Box>
+          </Modal>
         </Grid>
       </Grid>
     </Grid>
