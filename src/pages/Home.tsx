@@ -103,7 +103,7 @@ const Home = () => {
           <PokeCardLoader />
         ) : items?.length > 0 ? (
           currentPageItems?.map(({ name, id }) => (
-            <Grid item xs={6} sm={4} md={3} xl={2} key={name}>
+            <Grid item xs={6} sm={4} md={3} lg={2} key={name}>
               <Pokecard name={name} id={id} />
             </Grid>
           ))

@@ -17,6 +17,7 @@ function ScrollToTop({ children }: React.PropsWithChildren<unknown>) {
     if (anchor) {
       anchor.scrollIntoView({
         block: 'center',
+        behavior: 'smooth',
       })
     }
   }

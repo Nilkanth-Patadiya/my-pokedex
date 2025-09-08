@@ -17,9 +17,12 @@ const Pokecard = ({ name, id }: PokeCardProps) => {
     <Card
       elevation={8}
       sx={{
-        height: '100%',
+        height: 1,
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
-          transform: 'scale(1.05)',
+          transform: 'rotateZ(-2deg) translateY(-3px)',
+          boxShadow: '8px 8px 20px rgba(0,0,0,0.2)',
+          backgroundColor: '#f0f0ff',
         },
       }}
     >

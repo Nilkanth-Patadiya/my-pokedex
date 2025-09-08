@@ -1,4 +1,4 @@
-export const itemsPerPage: number = 20
+export const itemsPerPage: number = 24
 export const totalItems: number = 151
 export const pokemonImgURL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world'
