@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import Modal from '@mui/material/Modal'
-import CircularProgress from '@mui/material/CircularProgress'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
 import Skeleton from '@mui/material/Skeleton'
@@ -285,7 +284,20 @@ const PokemonDetails = () => {
                 px: 8,
               }}
             >
-              <CircularProgress color="info" size={60} />
+              <Box
+                component="img"
+                src="/pokeball.png"
+                alt="Loading"
+                sx={{
+                  width: 60,
+                  height: 60,
+                  animation: 'spin 1s linear infinite',
+                  '@keyframes spin': {
+                    from: { transform: 'rotate(0deg)' },
+                    to: { transform: 'rotate(360deg)' },
+                  },
+                }}
+              />
             </Box>
           </Modal>
         </Grid>

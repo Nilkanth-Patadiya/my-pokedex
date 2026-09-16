@@ -20,8 +20,8 @@ const Layout = () => {
         sx={{
           minHeight: '100vh',
           flexWrap: 'nowrap',
-          backgroundColor: '#e5e5f7',
-          backgroundImage: 'radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px)',
+          backgroundColor: '#fff3b0',
+          backgroundImage: 'radial-gradient(#444cf7 0.5px, #fff3b0 0.5px)',
           backgroundSize: '10px 10px',
         }}
       >
